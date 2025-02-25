@@ -11,7 +11,8 @@ const customerSchema = new Schema({
   country : String,
   gender : String
  
-});
+},{timestamps: true}
+);
  
  
 // Create a model based on that schema

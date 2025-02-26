@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./routes/allRoutes')
-const addUserRoute = require('./routes/adduser')
+const addCustomerRoute = require('./routes/addCustomer')
 var methodOverride = require('method-override')
 
 const app = express();
@@ -24,5 +24,5 @@ mongoose.connect("mongodb+srv://hw123me:Abd6298549@cluster0.jqvh0.mongodb.net/al
   });
 
   app.use(routes)
-  app.use('/user/add.html',addUserRoute)
+  app.use('/user/add.html',addCustomerRoute)
 

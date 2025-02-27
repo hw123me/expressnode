@@ -5,6 +5,7 @@ var moment = require('moment')
 const customerController = require("../Controllers/customerController")
 const loginController = require("../Controllers/loginController")
 
+
 //home page
 // router.get('/', userController.user_index_get)
 router.get('/', customerController.customer_index_get)
@@ -33,5 +34,8 @@ router.get('/register', loginController.user_register_get)
   
   //update
   router.put("/edit/:id", customerController.customer_edit_put);
+
+ 
+  
 
 module.exports = router

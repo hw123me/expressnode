@@ -16,11 +16,18 @@ const user_login_post = async (req, res) => {
     const passwordMatch = await bcryptjs.compare(req.body.password, user.password);
 
     if (passwordMatch) {
-        Customer.find().then((result) => {
-            res.render("index", { mytitle: "Index Page", arr: result, moment: moment })
-        }).catch((err) => {
-            console.log(err)
-        });
+        if (user.role !== "admin") 
+        {
+            Customer.find().then((result) => {
+               // res.render("index", { mytitle: "Index Page", arr: result, moment: moment })
+                res.redirect("/")
+            }).catch((err) => {
+                console.log(err)
+            });
+        }else{
+            res.render("adminhome")
+        }
+       
     } else {
         // res.send("Wrong password"); // Send message if password does not match
         res.render("login", { message: "Wrong password" });
@@ -36,7 +43,8 @@ const user_register_post = async (req, res) => {
     const data = {
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        role: req.body.role
     };
     const existingUser = await User.findOne({ name: req.body.name });
     const existingUserEmail = await User.findOne({ email: req.body.email });
